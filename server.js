@@ -2,7 +2,10 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const dbObj = require ("./db/db.json")
+const fs = require ("fs");
 const app = express();
+
+
 const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
@@ -32,9 +35,10 @@ app.get ('/',(req,res)=>{
 
 
 app.get("/api/notes", (req, res)=>{
+  fs.readFileSync(path.join (__dirname, './db/db.json'))
 res.json(dbObj)
 
-
+//having issue that newnote is overwriting old notes
 })
 
 // app.get('/api/notes/:title', (req, res) => {
@@ -51,7 +55,7 @@ res.json(dbObj)
 //     })
   
 
-app.post('/api/notes', (req, res) => {
+app.post('/api/notes', (req, res) => { //need to add note to db.json a
   const newNote =req.body;
 
 //   newNote.title = newNote.name.replace(/\s+/g, '').toUpperCase()
