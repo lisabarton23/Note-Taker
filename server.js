@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const notes = require ("./db/db.json")
+const dbObj = require ("./db/db.json")
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -10,6 +10,14 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+const notes =[
+    {
+        "title":"",
+        "text":"",
+    }
+
+
+]
 app.get ('/',(req,res)=>{
 
     res.sendFile(path.join(__dirname,'./public/index.html'));
@@ -23,17 +31,13 @@ app.get ('/',(req,res)=>{
 
 
 app.get("/api/notes", (req, res)=>{
-
-if(notes.length)
-res.json(notes)
+res.json(dbObj)
 
 
 })
 
 app.get('/api/notes/:title', (req, res) => {
   const noteval = req.params.noteval;
-
-  console.log(noteval);
 
 
 
@@ -50,7 +54,7 @@ app.post('/api/notes', (req, res) => {
   
   const newNote = req.body;
 
-  console.log(newNote);
+  
 
   // We then add the json the user sent to the array
   notes.push(newNote);
@@ -61,7 +65,7 @@ app.post('/api/notes', (req, res) => {
 
 
 
-
+//need a getNotes function
 
 
 
