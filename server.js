@@ -41,6 +41,8 @@ res.json(dbObj)
 //having issue that newnote is overwriting old notes
 })
 
+const newObj =
+//fswritetoFile )".db/db.json, JSON.stringify(newObj)
 // app.get('/api/notes/:title', (req, res) => {
 //   const noteval = req.params.noteval;
 
@@ -57,6 +59,11 @@ res.json(dbObj)
 
 app.post('/api/notes', (req, res) => { //need to add note to db.json a
   const newNote =req.body;
+  fs.writeFile("./db/db.json", JSON.stringify (newNote), function (err){
+if (err) throw err;
+console.log (" new note")
+
+  })
 
 //   newNote.title = newNote.name.replace(/\s+/g, '').toUpperCase()
 
