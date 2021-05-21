@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const dbObj = require ("./db/db.json")
@@ -36,28 +37,27 @@ res.json(dbObj)
 
 })
 
-app.get('/api/notes/:title', (req, res) => {
-  const noteval = req.params.noteval;
+// app.get('/api/notes/:title', (req, res) => {
+//   const noteval = req.params.noteval;
 
 
 
-  for(const note of notes){
-    if(noteval === note.title)
-    return res.json(note)
-  }
-  res.send('No note found');
-  return res.json(false);
-    })
+//   for(const note of notes){
+//     if(noteval === note.title)
+//     return res.json(note)
+//   }
+//   res.send('No note found');
+//   return res.json(false);
+//     })
   
 
 app.post('/api/notes', (req, res) => {
-  
-  const newNote = req.body;
+  const newNote =req.body;
 
-  
+//   newNote.title = newNote.name.replace(/\s+/g, '').toUpperCase()
 
   // We then add the json the user sent to the array
-  notes.push(newNote);
+  dbObj.push(newNote);
 
   // We then display the JSON to the users
   res.json(newNote);
