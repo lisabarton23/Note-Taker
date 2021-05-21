@@ -1,4 +1,4 @@
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const dbObj = require ("./db/db.json")
@@ -14,14 +14,14 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const notes =[
-    {
-        "title":"",
-        "text":"",
-    }
+// const notes =[
+//     {
+//         "title":"",
+//         "text":"",
+//     }]
 
 
-]
+
 app.get ('/',(req,res)=>{
 
     res.sendFile(path.join(__dirname,'./public/index.html'));
@@ -33,7 +33,7 @@ app.get ('/',(req,res)=>{
     
     })
 
-
+//does this need to be in a function? 
 app.get("/api/notes", (req, res)=>{
   fs.readFileSync(path.join (__dirname, './db/db.json'))
 res.json(dbObj)
@@ -41,8 +41,6 @@ res.json(dbObj)
 //having issue that newnote is overwriting old notes
 })
 
-const newObj =
-//fswritetoFile )".db/db.json, JSON.stringify(newObj)
 // app.get('/api/notes/:title', (req, res) => {
 //   const noteval = req.params.noteval;
 
@@ -59,11 +57,6 @@ const newObj =
 
 app.post('/api/notes', (req, res) => { //need to add note to db.json a
   const newNote =req.body;
-  fs.writeFile("./db/db.json", JSON.stringify (newNote), function (err){
-if (err) throw err;
-console.log (" new note")
-
-  })
 
 //   newNote.title = newNote.name.replace(/\s+/g, '').toUpperCase()
 
