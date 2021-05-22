@@ -14,11 +14,11 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-// const notes =[
-//     {
-//         "title":"",
-//         "text":"",
-//     }]
+const notes =[
+    {
+        "title":"",
+        "text":"",
+    }]
 
 
 
@@ -56,21 +56,13 @@ res.json(dbObj)
   
 
 app.post('/api/notes', (req, res) => { //need to add note to db.json a
-  const newNote =req.body;
+  dbObj.push(req.body);
+  fs.writeFileSync("./db/db.json", JSON.stringify (dbObj, null, 2))
 
-//   newNote.title = newNote.name.replace(/\s+/g, '').toUpperCase()
-
-  // We then add the json the user sent to the array
-  dbObj.push(newNote);
-
-  // We then display the JSON to the users
-  res.json(newNote);
-});
-
-
-
+;
+  res.json(dbObj);}
 //need a getNotes function
-
+)
 
 
 
