@@ -8,7 +8,8 @@
 
 ## Installation
 To install please follow my Herkou deployed link below. 
+
 ## Usage
 To use simply click get started, then enter a note title and the info you want!
 
-[https://git.heroku.com/mysterious-atoll-62688.git]
+[heroku link](https://git.heroku.com/mysterious-atoll-62688.git)
