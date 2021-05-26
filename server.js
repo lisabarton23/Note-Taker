@@ -1,7 +1,7 @@
  const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
-const dbObj = require ("./db/db.json")
+const notes = require ("./db/db.json")
 const fs = require ("fs");
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const notes =[]
+
     
 
 
@@ -30,46 +30,41 @@ app.get ('/',(req,res)=>{
     })
 
 
-    
-    app.get("/api/notes
-readFileAsync (__dirname, './db/db.json', 'utf8');
-
-write(note){
-  return writeFileAsync(__dirname, './db/db.json', JSON.stringify(note));
-}
-    
-app.get("/api/notes", (req, res)=>{
-  const chosen = req.params.notes;
-  fs.readFileSync(path.join (__dirname, './db/db.json'))
-res.json(dbObj)
-
-//having issue that newnote is overwriting old notes
-})
+    //to be able to see and chose notes that have already been written
+app.get("/api/notes/", (req, res)=>{
+  // const chosen = req.params.notes;
+  fs.readFile(path.join(__dirname, './db/db.json'), function read(err, data) {
+    if (err) {
+        throw err;
     }
-// app.get('/api/notes/:title', (req, res) => {
-//   const noteval = req.params.noteval;
+    res.json(notes);
+
+    // Invoke the next step here however you like
+    console.log("works");   // Put all of the code here (not the best solution)
+   
+});
+ 
+//   fs.readFileSync(path.join (__dirname, './db/db.json'))
+// res.json(chosen)
 
 
+})
+    
 
-//   for(const note of notes){
-//     if(noteval === note.title)
-//     return res.json(note)
-//   }
-//   res.send('No note found');
-//   return res.json(false);
-//     })
   
+//to be able to post the notes to the page and then save them, not overwrite them
+ app.post('/api/notes', (req, res) => { //need to add note to db.json and an id
+const newNote = req.body;
 
-// app.post('/api/notes', (req, res) => { //need to add note to db.json a
-// const newNOte = req.body;
+notes.push(newNote)
+  //trying to push into the db.json file should this be going to an 
+  //empty array on the.js and then the db.json grabs from that array
+  // for the app.get? const notes [] global varaibale, notes.push.newnote, 
+  //change current notes to dbObj then notes.push(dbobj) 
 
-// notes.push(newNOte)
-//   // fs.readFileSync(path.join (__dirname,"./db/db.json"))
 
+  res.json(newNote);})
 
-//   res.json(newNOte);}
-// //need a getNotes function
-// )
 
 
 
