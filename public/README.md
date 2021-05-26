@@ -11,5 +11,5 @@ To install please follow my Herkou deployed link below.
 
 ## Usage
 To use simply click get started, then enter a note title and the info you want!
-
+![screenshot](assetsimg/screenshot.PNG)
 [heroku link](https://mysterious-atoll-62688.herokuapp.com/)
