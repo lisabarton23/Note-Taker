@@ -39,10 +39,8 @@ app.get("/api/notes/", (req, res)=>{
     }
     res.json(notes);
 
-    // Invoke the next step here however you like
-    console.log("works");   // Put all of the code here (not the best solution)
-   
-});
+
+}) 
  
 //   fs.readFileSync(path.join (__dirname, './db/db.json'))
 // res.json(chosen)
@@ -54,7 +52,7 @@ app.get("/api/notes/", (req, res)=>{
   
 //to be able to post the notes to the page and then save them, not overwrite them
  app.post('/api/notes', (req, res) => { //need to add note to db.json and an id
-const newNote = req.body;
+const newNote =req.body;
 
 notes.push(newNote)
   //trying to push into the db.json file should this be going to an 
@@ -70,7 +68,17 @@ notes.push(newNote)
 
 
 
-
+  app.post('/api/notes', (req, res) => {
+    fs.writeFile(path.join(__dirname, './db/db.json'), function write(err, notes){
+      if (err) {
+        throw err;
+      }
+      res.json(notes)
+    })
+      // Invoke the next step here however you like
+      // console.log("works");   // Put all of the code here (not the best solution)
+     
+  });
 
 
 
